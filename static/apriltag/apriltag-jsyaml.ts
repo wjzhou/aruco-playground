@@ -4,9 +4,13 @@ import type * as yamlType from 'js-yaml';
 declare const jsyaml: typeof yamlType
 const yaml: typeof yamlType = jsyaml;
 
+export interface PageData{
+	id: number;
+}
+
 export class LayoutTag {
 	constructor(
-		public idFunc: (pageNum: number) => number,
+		public idFunc: (pageData: PageData) => number,
 		public startX: number,
 		public startY: number,
 		public size: number,
@@ -25,11 +29,14 @@ const TagYamlType = new yaml.Type('!tag', {
 	// If a node is resolved, use it to create a Point instance.
 	construct: function (data) {
 		let disaplay = (data.length == 5) ? data[4] : data[0].toString();
-		let idFunc: (pageNum: number) => number;
-		if (typeof data[0] === 'number') {
+		let idFunc: (pageData: PageData) => number;
+		if (data[0] === -1) {
+			idFunc = new Function("page", `return page.id`) as (pageData: PageData) => number;
+		}
+		else if (typeof data[0] === 'number') {
 			idFunc = (_) => data[0];
 		} else {
-			idFunc = new Function("id", `return ${data[0]}`) as (pageNum: number) => number;
+			idFunc = new Function("page", `return \`${data[0]}\``) as (pageData: PageData) => number;
 		}
 		return new LayoutTag(idFunc, data[1], data[2], data[3], disaplay);
 	},
@@ -98,7 +105,7 @@ const DrillMarkYamlType = new yaml.Type('!mark', {
 
 export class LayoutText {
 	constructor(
-		public textFunc: (pageNum: number) => string,
+		public textFunc: (pageData: PageData) => string,
 		public startX: number,
 		public startY: number,
 		public size: number,
@@ -116,7 +123,7 @@ const LayoutTextYamlType = new yaml.Type('!text', {
 
 	// If a node is resolved, use it to create a Point instance.
 	construct: function (data) {
-		const textFunc = new Function("id", `return \`${data[0]}\``) as (pageNum: number) => string;
+		const textFunc = new Function("page", `return \`${data[0]}\``) as (pageData: PageData) => string;
 		const rotate = (data.length === 5) ? data[4] : 0;
 		return new LayoutText(textFunc, data[1], data[2], data[3], rotate);
 	},
@@ -126,14 +133,16 @@ const LayoutTextYamlType = new yaml.Type('!text', {
 });
 
 export class PageRange {
-	public pages: number[] = [];
+	public pages: PageData[] = [];
 	constructor(public rawValue: string) {
 		let fileds = rawValue.split(',');
 		let reNumber = /^\s*(\d+)\s*$/;
 		let reRange = /^\s*(\d+)\s*-\s*(\d+)\s*$/;
 		for (let field of fileds) {
 			if (reNumber.test(field)) {
-				this.pages.push(+field);
+				this.pages.push({
+					id: +field
+				});
 				continue;
 			}
 			var result = reRange.exec(field)
@@ -141,7 +150,7 @@ export class PageRange {
 				let start = +result[1];
 				let end = +result[2];
 				for (let i = start; i <= end; ++i) {
-					this.pages.push(i);
+					this.pages.push({ id: i });
 				}
 				continue;
 			}
@@ -180,7 +189,7 @@ export type InputData = {
 	dict: string,
 	paperSize: [number, number],
 	layout: LayoutEntry[]
-	pages: number | PageRange
+	pages: number | PageRange | PageData[]
 };
 
 export function loadYaml(value: string): InputData {
