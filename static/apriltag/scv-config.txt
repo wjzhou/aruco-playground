@@ -1,0 +1,34 @@
+#72 for inch and 2.83464566929 for mm
+unit: 72
+paperSize: [9, 12]
+# allowed value: [apriltag_36h11, apriltag_36h10, apriltag_25h9, apriltag_16h5, aruco_original, aruco_4x4, aruco_5x5, aruco_6x6, aruco_7x7]
+dict: apriltag_36h11
+layout:
+# !tag id, x, y, size
+# Note: id can be a number 
+#  or -1, which will use the passed in id, 
+#  or any javascript expression that have id as param, e.g. id+1
+- !tag [-1, 1, 2.5, 7]
+
+# !mark [x, y, radius]
+- !mark [1, 1, 0.25]
+- !mark [8, 1, 0.25]
+- !mark [4.5, 1, 0.25]
+
+- !mark [1, 11, 0.25]
+- !mark [8, 11, 0.25]
+- !mark [4.5, 11, 0.25]
+
+- !mark [1, 0.5, 0.25]
+- !mark [8, 0.5, 0.25]
+- !mark [4.5, 0.5, 0.25]
+
+# !text ["Id: ${id}", x, y, size, rotate (optional)]
+# Note: text run through Template, which accept a id param
+- !text ["${id}", 2.5, 0.8, 0.5]
+- !text ["${id}", 6, 0.8, 0.5]
+- !text ["${id}", 2.5, 10.8, 0.5]
+- !text ["${id}", 6, 10.8, 0.5]
+
+# in the form of number or start-end, the id will be passed to layout
+pages: !range 0,500
