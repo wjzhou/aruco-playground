@@ -1,7 +1,7 @@
 //import * as dicts from './apriltag-dictionary.js';
 import type * as PDFLibType from 'pdf-lib';
-import { PDFPage, PDFPageDrawSquareOptions, PDFDocument, grayscale } from 'pdf-lib';
-import { InputData, LayoutCircle, LayoutDrillMark, LayoutTag, LayoutText } from './apriltag-jsyaml.js';
+import type { PDFPage, PDFPageDrawSquareOptions, PDFDocument } from 'pdf-lib';
+import { InputData, LayoutCircle, LayoutDrillMark, LayoutTag, LayoutText, PageData, PageRange } from './apriltag-jsyaml.js';
 import { getDict, Dict } from './apriltag-dict.js';
 
 declare const PDFLib: typeof PDFLibType
@@ -49,15 +49,12 @@ function drawTag(page: PDFPage, id: number, ax: number, ay: number, sSize: numbe
     }
 }
 
-function layout(page: PDFPage, pageNum: number, dict: Dict, input: InputData) {
+function layout(page: PDFPage, pageData: PageData, dict: Dict, input: InputData, font: PDFLibType.PDFFont) {
     for (var entry of input.layout) {
         if (entry instanceof LayoutTag) {
-            let id = entry.idFunc(pageNum);
+            let id = entry.idFunc(pageData);
             if (typeof id !== 'number') {
                 throw new Error('id invalid');
-            }
-            if (id === -1) {
-                id = pageNum
             }
             drawTag(page, id, entry.startX, entry.startY, entry.size, dict, input.unit);
         }
@@ -95,13 +92,24 @@ function layout(page: PDFPage, pageNum: number, dict: Dict, input: InputData) {
 
         }
         else if (entry instanceof LayoutText) {
-            const text = entry.textFunc(pageNum);
+            const text = entry.textFunc(pageData);
+            const size = entry.size * input.unit;
+            const width = font.widthOfTextAtSize(text, size);
+            const height = font.heightAtSize(size, {descender: false})
             page.drawText(text, {
-                x: entry.startX * input.unit,
-                y: entry.startY * input.unit,
-                size: entry.size * input.unit,
+                x: entry.startX * input.unit - width/2,
+                y: entry.startY * input.unit - height/2,
+                size,
                 rotate: PDFLib.degrees(entry.rotate),
             });
+            // page.drawRectangle({
+            //     x: entry.startX * input.unit - width/2,
+            //     y: entry.startY * input.unit - height/2,
+            //     width,
+            //     height,
+            //     borderColor: PDFLib.rgb(1, 0, 0),
+            //     borderWidth: 1,
+            // })
         }
     }
 }
@@ -111,11 +119,22 @@ export async function createPdf(input: InputData) {
     const dict = await getDict(input.dict);
 
     const pdfDoc: PDFDocument = await PDFLib.PDFDocument.create();
+    const font = await pdfDoc.embedFont(PDFLib.StandardFonts.Helvetica);
+
     const unit = input.unit;
-    const pages = (typeof input.pages === 'number') ? [input.pages] : input.pages.pages;
-    for (let pageNum of pages) {
+    let pages: PageData[]
+    if (typeof input.pages === 'number') {
+        pages = [{ id: input.pages }];
+    } else if (input.pages instanceof PageRange) {
+        pages = input.pages.pages
+    } else if (Array.isArray(input.pages)){
+        pages = input.pages
+    } else {
+        throw new Error("page must be a number, a !range or an array of objects");
+    }
+    for (let pageData of pages) {
         const page = pdfDoc.addPage(paperSize);
-        layout(page, pageNum, dict, input);
+        layout(page, pageData, dict, input, font);
     }
     const pdfDataUri = await pdfDoc.saveAsBase64({ dataUri: true });
     (document.getElementById('pdf') as HTMLEmbedElement).src = pdfDataUri;

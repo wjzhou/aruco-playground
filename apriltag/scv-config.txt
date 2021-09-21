@@ -25,10 +25,52 @@ layout:
 
 # !text ["Id: ${id}", x, y, size, rotate (optional)]
 # Note: text run through Template, which accept a id param
-- !text ["${id}", 2.5, 0.8, 0.5]
-- !text ["${id}", 6, 0.8, 0.5]
-- !text ["${id}", 2.5, 10.8, 0.5]
-- !text ["${id}", 6, 10.8, 0.5]
+- !text ["${page.label}", 2.75, 1, 0.5]
+- !text ["${page.oldLabel}", 6.25, 1, 0.5]
+- !text ["id: ${page.id}", 2.75, 11, 0.5]
 
 # in the form of number or start-end, the id will be passed to layout
-pages: !range 0,500
+pages: [
+{"id":0,"label":"Start-0","oldLabel":"AC0"},
+{"id":1,"label":"Start-1","oldLabel":"AC1"},
+{"id":10,"label":"Putback-0","oldLabel":"AA0"},
+{"id":11,"label":"Putback-1","oldLabel":"AA1"},
+
+{"id":0,"label":"Start-0","oldLabel":"AC0"},
+{"id":1,"label":"Start-1","oldLabel":"AC1"},
+{"id":10,"label":"Putback-0","oldLabel":"AA0"},
+{"id":11,"label":"Putback-1","oldLabel":"AA1"},
+
+{"id":27,"label":"Queue-7","oldLabel":"AB49"},
+{"id":21,"label":"Queue-1","oldLabel":"AB7"},{"id":22,"label":"Queue-2","oldLabel":"AB11"},{"id":23,"label":"Queue-3","oldLabel":"AB17"},{"id":24,"label":"Queue-4","oldLabel":"AB27"},{"id":25,"label":"Queue-5","oldLabel":"AB41"},{"id":26,"label":"Queue-6","oldLabel":"AB47"},{"id":27,"label":"Queue-7","oldLabel":"AB49"},
+{"id":117,"label":"11 -  7","oldLabel":"B37"},{"id":31,"label":"11 -  7","oldLabel":"H13"},{"id":101,"label":"10 -  1","oldLabel":"A7"},{"id":103,"label":"10 -  3","oldLabel":"A17"},{"id":105,"label":"10 -  5","oldLabel":"A27"},{"id":107,"label":"10 -  7","oldLabel":"A37"},{"id":111,"label":"11 -  1","oldLabel":"B7"},{"id":113,"label":"11 -  3","oldLabel":"B17"},{"id":115,"label":"11 -  5","oldLabel":"B27"},{"id":121,"label":"12 -  1","oldLabel":"C7"},{"id":123,"label":"12 -  3","oldLabel":"C17"},{"id":125,"label":"12 -  5","oldLabel":"C27"},{"id":127,"label":"12 -  7","oldLabel":"C37"},{"id":131,"label":"13 -  1","oldLabel":"D7"},{"id":133,"label":"13 -  3","oldLabel":"D17"},{"id":135,"label":"13 -  5","oldLabel":"D27"},
+{"id":141,"label":"14 -  1","oldLabel":"E7"},{"id":143,"label":"14 -  3","oldLabel":"E17"},{"id":145,"label":"14 -  5","oldLabel":"E27"},{"id":147,"label":"14 -  7","oldLabel":"E37"},
+{"id":155,"label":"15 -  5","oldLabel":"F27"},{"id":157,"label":"15 -  7","oldLabel":"F37"},{"id":161,"label":"16 -  1","oldLabel":"G7"},{"id":163,"label":"16 -  3","oldLabel":"G17"},{"id":165,"label":"16 -  5","oldLabel":"G27"},
+{"id":171,"label":"17 -  1","oldLabel":"H7"},{"id":173,"label":"17 -  3","oldLabel":"H17"},
+{"id":181,"label":"18 -  1","oldLabel":"I7"},{"id":183,"label":"18 -  3","oldLabel":"I17"},{"id":185,"label":"18 -  5","oldLabel":"I27"},
+{"id":191,"label":"19 -  1","oldLabel":"J7"},{"id":193,"label":"19 -  3","oldLabel":"J17"},{"id":195,"label":"19 -  5","oldLabel":"J27"},
+{"id":201,"label":"20 -  1","oldLabel":"K7"},{"id":203,"label":"20 -  3","oldLabel":"K17"},{"id":211,"label":"21 -  1","oldLabel":"L7"},
+{"id":213,"label":"21 -  3","oldLabel":"L17"},{"id":221,"label":"22 -  1","oldLabel":"M7"},{"id":223,"label":"22 -  3","oldLabel":"M17"},
+{"id":231,"label":"23 -  1","oldLabel":"N7"},{"id":233,"label":"23 -  3","oldLabel":"N17"},{"id":241,"label":"24 -  1","oldLabel":"W1"},
+{"id":243,"label":"24 -  3","oldLabel":"W17"},{"id":245,"label":"24 -  5","oldLabel":"W25"},{"id":251,"label":"25 -  1","oldLabel":"X1"},{"id":253,"label":"25 -  3","oldLabel":"X2"},{"id":255,"label":"25 -  5","oldLabel":"X9"},{"id":257,"label":"25 -  7","oldLabel":"X20"},{"id":261,"label":"26 -  1","oldLabel":"Y5"},{"id":263,"label":"26 -  3","oldLabel":"Y9"},{"id":265,"label":"26 -  5","oldLabel":"Z7"},{"id":51,"label":"Packing-1","oldLabel":"AD1"},{"id":53,"label":"Packing-3","oldLabel":"AD3"},{"id":55,"label":"Packing-5","oldLabel":"AD5"},{"id":57,"label":"Packing-7","oldLabel":"AD7"},{"id":59,"label":"Packing-9","oldLabel":"AD9"},{"id":61,"label":"Packing-11","oldLabel":"AD11"},{"id":63,"label":"Packing-13","oldLabel":"AD13"},{"id":65,"label":"Packing-15","oldLabel":"AD15"},{"id":67,"label":"Packing-17","oldLabel":"AD17"},{"id":69,"label":"Packing-19","oldLabel":"AD19"},{"id":71,"label":"Packing-21","oldLabel":"AD21"},{"id":73,"label":"Packing-23","oldLabel":"AD23"},{"id":75,"label":"Packing-25","oldLabel":"AD25"},{"id":77,"label":"Packing-27","oldLabel":"AD27"},{"id":79,"label":"Packing-29","oldLabel":"AD29"},{"id":81,"label":"Packing-31","oldLabel":"AD31"},{"id":83,"label":"Packing-33","oldLabel":"AD33"},{"id":85,"label":"Packing-35","oldLabel":"AD35"},{"id":87,"label":"Packing-37","oldLabel":"AD37"},{"id":89,"label":"Packing-39","oldLabel":"AD39"},{"id":91,"label":"Packing-41","oldLabel":"AD41"},{"id":93,"label":"Packing-43","oldLabel":"AD43"},{"id":95,"label":"Packing-45","oldLabel":"AD45"},{"id":97,"label":"Packing-47","oldLabel":"AD47"},{"id":99,"label":"Packing-49","oldLabel":"AD49"}]
+
+
+
+/*
+function idLabel(id){
+    if (id===0) label="Start-0"
+    if (id===10) label="Putback-0"
+    if (id>=20 && id<=29) label=`Queue-${id-20}`
+    if (id>=50 && id<=99) label=`Packing-${id-50}`
+    if (id>=100) label=`${Math.floor(id/10)} - ${id%10}`
+    return label
+}
+
+JSON.stringify(Object.entries(waypointMap).map(a=>{
+    id = a[1]
+    label = idLabel(id)
+    oldLabel = a[0]
+
+    return {id, label, oldLabel}
+}))
+*/

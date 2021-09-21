@@ -28,55 +28,17 @@ layout:
 - !mark [7.25, 10, 0.25]
 - !mark [1.25, 10, 0.25]
 
-# !text ["Id: ${id}", x, y, size, rotate (optional)]
-# Note: text run through Template, which accept a id param
-- !text ["Id: ${id}", 3, 9, 1]
+# !text ["Id: ${page.id}", x, y, size, rotate (optional)]
+# Note: text run through javascript Template. You may use 'page' variable to access properties
+- !text ["Id: ${page.id} - ${page.label}", 1, 1, 1]
+
 
 # in the form of number or start-end, the id will be passed to layout
-pages: !range 0,5-6</textarea><br>
+pages: [{"id": 12, "label": "any label"}]
+# Note: id is required and will be used as apriltag id
+# pages: !range 0-3,5
+# Note: in this range form, the number will be passed in as page.id</textarea><br>
 	<button type="button" id='submit' style="margin:1rem 0">Submit</button><br>
 	<embed id="pdf" type="application/pdf" frameBorder="0" scrolling="auto" height="1056" width="816"></embed>
-	<script>
-		/**
-		 * @param {CanvasRenderingContext2D} ctx 
-		 * @param {string} line
-		 */
-		function processLine(ctx, line) {
-			line = line.trim();
-			if (line.startsWith('#') || line.length === 0) {
-				return;
-			}
-			const matches = line.match(/^([A-Z][A-D]?)(\d\d?)(?:.(\d))?\s+([0-9]*\.?[0-9]+)\s+([0-9]*\.?[0-9]+)\s+([0-9]*\.?[0-9]+)$/);
-			if (!matches) {
-				throw new Error(`can not parse: ${line}`)
-			}
-			let a1 = 0
-			const aislePart = matches[1];
-			a1 = aislePart.charCodeAt(0) - 'A'.charCodeAt(0)
-			if (aislePart.length === 2) {
-				a1 = 26 + aislePart.charCodeAt(1) - 'A'.charCodeAt(0)
-			}
-			const bayPart = matches[2];
-			const a2 = +bayPart + 30;
-			if (a2 >= 80) {
-				throw new Error(`position part larger than 50 ${bayPart}, line: ${line}`);
-			}
-			const positionPart = matches[3];
-			let a3
-			if (positionPart) {
-				a3 = +positionPart + 80;
-			}
-
-			const x = +matches[4];
-			const y = +matches[5];
-			const size = +matches[6];
-
-			drawAruco(ctx, a1, x, y, size)
-			drawAruco(ctx, a2, x + size * 1.2, y, size);
-			if (a3 !== undefined) {
-				drawAruco(ctx, a3, x + size * 1.2 * 2, y, size)
-			}
-		}
-	</script>
 </body>
 </html>
