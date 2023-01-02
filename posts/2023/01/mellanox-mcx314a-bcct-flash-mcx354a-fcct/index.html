@@ -1,0 +1,96 @@
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>Mellanox Mcx314a Bcct Flash Mcx354a Fcct | wjzhou's Personal Blog</title><meta name=viewport content="width=device-width,minimum-scale=1"><meta name=description content="The following command can be used to cross flash the Mellanox MCX314A-BCCT (Ethernet only) to Mellanox MCX354A-FCCT (VPI).
+download and unzip the firmware https://network.nvidia.com/support/firmware/connectx3proib/
+wget http://www.mellanox.com/downloads/firmware/fw-ConnectX3Pro-rel-2_42_5000-MCX354A-FCC_Ax-FlexBoot-3.4.752.bin.zip unzip fw-ConnectX3Pro-rel-2_42_5000-MCX354A-FCC_Ax-FlexBoot-3.4.752.bin.zip install flashing tool opensuse:
+sudo zypper install mstflint get the pcie id sudo lspci | grep Mellanox 03:00.0 Network controller: Mellanox Technologies MT27520 Family [ConnectX-3 Pro]
+This 03:00.0 should be passed into the mstflint&rsquo;s -d parameter.
+flash the firmware sudo mstflint -nofs --ignore_dev_data --guid=000000000000050 --use_image_ps --allow_psid_change -d03:00."><meta name=generator content="Hugo 0.109.0"><meta name=robots content="noindex, nofollow"><link rel=stylesheet href=/ananke/css/main.min.css><meta property="og:title" content="Mellanox Mcx314a Bcct Flash Mcx354a Fcct"><meta property="og:description" content="The following command can be used to cross flash the Mellanox MCX314A-BCCT (Ethernet only) to Mellanox MCX354A-FCCT (VPI).
+download and unzip the firmware https://network.nvidia.com/support/firmware/connectx3proib/
+wget http://www.mellanox.com/downloads/firmware/fw-ConnectX3Pro-rel-2_42_5000-MCX354A-FCC_Ax-FlexBoot-3.4.752.bin.zip unzip fw-ConnectX3Pro-rel-2_42_5000-MCX354A-FCC_Ax-FlexBoot-3.4.752.bin.zip install flashing tool opensuse:
+sudo zypper install mstflint get the pcie id sudo lspci | grep Mellanox 03:00.0 Network controller: Mellanox Technologies MT27520 Family [ConnectX-3 Pro]
+This 03:00.0 should be passed into the mstflint&rsquo;s -d parameter.
+flash the firmware sudo mstflint -nofs --ignore_dev_data --guid=000000000000050 --use_image_ps --allow_psid_change -d03:00."><meta property="og:type" content="article"><meta property="og:url" content="https://blog.ellieiris.com/posts/2023/01/mellanox-mcx314a-bcct-flash-mcx354a-fcct/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2023-01-02T10:50:14-05:00"><meta property="article:modified_time" content="2023-01-02T10:50:14-05:00"><meta itemprop=name content="Mellanox Mcx314a Bcct Flash Mcx354a Fcct"><meta itemprop=description content="The following command can be used to cross flash the Mellanox MCX314A-BCCT (Ethernet only) to Mellanox MCX354A-FCCT (VPI).
+download and unzip the firmware https://network.nvidia.com/support/firmware/connectx3proib/
+wget http://www.mellanox.com/downloads/firmware/fw-ConnectX3Pro-rel-2_42_5000-MCX354A-FCC_Ax-FlexBoot-3.4.752.bin.zip unzip fw-ConnectX3Pro-rel-2_42_5000-MCX354A-FCC_Ax-FlexBoot-3.4.752.bin.zip install flashing tool opensuse:
+sudo zypper install mstflint get the pcie id sudo lspci | grep Mellanox 03:00.0 Network controller: Mellanox Technologies MT27520 Family [ConnectX-3 Pro]
+This 03:00.0 should be passed into the mstflint&rsquo;s -d parameter.
+flash the firmware sudo mstflint -nofs --ignore_dev_data --guid=000000000000050 --use_image_ps --allow_psid_change -d03:00."><meta itemprop=datePublished content="2023-01-02T10:50:14-05:00"><meta itemprop=dateModified content="2023-01-02T10:50:14-05:00"><meta itemprop=wordCount content="324"><meta itemprop=keywords content="rdma,"><meta name=twitter:card content="summary"><meta name=twitter:title content="Mellanox Mcx314a Bcct Flash Mcx354a Fcct"><meta name=twitter:description content="The following command can be used to cross flash the Mellanox MCX314A-BCCT (Ethernet only) to Mellanox MCX354A-FCCT (VPI).
+download and unzip the firmware https://network.nvidia.com/support/firmware/connectx3proib/
+wget http://www.mellanox.com/downloads/firmware/fw-ConnectX3Pro-rel-2_42_5000-MCX354A-FCC_Ax-FlexBoot-3.4.752.bin.zip unzip fw-ConnectX3Pro-rel-2_42_5000-MCX354A-FCC_Ax-FlexBoot-3.4.752.bin.zip install flashing tool opensuse:
+sudo zypper install mstflint get the pcie id sudo lspci | grep Mellanox 03:00.0 Network controller: Mellanox Technologies MT27520 Family [ConnectX-3 Pro]
+This 03:00.0 should be passed into the mstflint&rsquo;s -d parameter.
+flash the firmware sudo mstflint -nofs --ignore_dev_data --guid=000000000000050 --use_image_ps --allow_psid_change -d03:00."></head><body class="ma0 avenir bg-near-white"><header><div class=bg-black><nav class="pv3 ph3 ph4-ns" role=navigation><div class="flex-l justify-between items-center center"><a href=/ class="f3 fw2 hover-white no-underline white-90 dib">wjzhou's Personal Blog</a><div class="flex-l items-center"><div class=ananke-socials></div></div></div></nav></div></header><main class=pb7 role=main><article class="flex-l flex-wrap justify-between mw8 center ph3"><header class="mt4 w-100"><aside class="instapaper_ignoref b helvetica tracked">POSTS</aside><div id=sharing class="mt3 ananke-socials"></div><h1 class="f1 athelas mt3 mb1">Mellanox Mcx314a Bcct Flash Mcx354a Fcct</h1><time class="f6 mv4 dib tracked" datetime=2023-01-02T10:50:14-05:00>January 2, 2023</time></header><div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><p>The following command can be used to cross flash the Mellanox MCX314A-BCCT (Ethernet only) to Mellanox MCX354A-FCCT (VPI).</p><h1 id=download-and-unzip-the-firmware>download and unzip the firmware</h1><p><a href=https://network.nvidia.com/support/firmware/connectx3proib/>https://network.nvidia.com/support/firmware/connectx3proib/</a></p><pre tabindex=0><code>wget http://www.mellanox.com/downloads/firmware/fw-ConnectX3Pro-rel-2_42_5000-MCX354A-FCC_Ax-FlexBoot-3.4.752.bin.zip
+unzip fw-ConnectX3Pro-rel-2_42_5000-MCX354A-FCC_Ax-FlexBoot-3.4.752.bin.zip
+</code></pre><h1 id=install-flashing-tool>install flashing tool</h1><p>opensuse:</p><pre tabindex=0><code>sudo zypper install mstflint
+</code></pre><h1 id=get-the-pcie-id>get the pcie id</h1><pre tabindex=0><code>sudo lspci | grep Mellanox
+</code></pre><p><strong>03:00.0</strong> Network controller: Mellanox Technologies MT27520 Family [ConnectX-3 Pro]</p><p>This <code>03:00.0</code> should be passed into the mstflint&rsquo;s -d parameter.</p><h1 id=flash-the-firmware>flash the firmware</h1><pre tabindex=0><code>sudo mstflint -nofs --ignore_dev_data --guid=000000000000050 --use_image_ps --allow_psid_change -d03:00.0 -i fw-ConnectX3Pro-rel-2_42_5000-MCX354A-FCC_Ax-FlexBoot-3.4.752.bin burn
+</code></pre><p>Where</p><pre tabindex=0><code>--nofs, Burn image in a non failsafe manner, we are cross flashing, so we need this flag to skip the validation
+--ignore_dev_data, use the settings from the image instead of the exising device
+--guid=000000000000050, The GUID, please keep it unique within the subnet, see note in the following
+--use_image_ps, we are overriding the PS from MCX314A&#39;s MT_1090111023 to MCX354A-FCCT&#39;s MT_1090111019
+--allow_psid_change, required for the override
+</code></pre><p>Note: for the &ndash;guid, it need to be unique inside the subnet.</p><pre tabindex=0><code>reference from mstflint -hh:
+GUID base value. 4 GUIDs are automatically
+  assigned to the following values:
+
+  guid   -&gt; node GUID
+  guid+1 -&gt; port1
+  guid+2 -&gt; port2
+  guid+3 -&gt; system image GUID.
+</code></pre><h1 id=switch-the-port-type-from-vpi-to-ethernetib-optional>switch the port type from VPI to ethernet/ib (optional)</h1><h2 id=get-the-current-status>get the current status</h2><pre tabindex=0><code>sudo mstconfig -d 03:00.0 query
+</code></pre><pre tabindex=0><code>Device #1:
+----------
+
+Device type:    ConnectX3Pro
+Device:         48:00.0
+
+Configurations:                         Next Boot
+    SRIOV_EN                            True(1)
+    NUM_OF_VFS                          8
+    LINK_TYPE_P1                        VPI(3)
+    LINK_TYPE_P2                        VPI(3)
+    LOG_BAR_SIZE                        3
+    BOOT_PKEY_P1                        0
+    BOOT_PKEY_P2                        0
+    BOOT_OPTION_ROM_EN_P1               True(1)
+    BOOT_VLAN_EN_P1                     False(0)
+    BOOT_RETRY_CNT_P1                   0
+    LEGACY_BOOT_PROTOCOL_P1             PXE(1)
+    BOOT_VLAN_P1                        1
+    BOOT_OPTION_ROM_EN_P2               True(1)
+    BOOT_VLAN_EN_P2                     False(0)
+    BOOT_RETRY_CNT_P2                   0
+    LEGACY_BOOT_PROTOCOL_P2             PXE(1)
+    BOOT_VLAN_P2                        1
+    IP_VER_P1                           IPv4(0)
+    IP_VER_P2                           IPv4(0)
+    CQ_TIMESTAMP                        True(1)
+</code></pre><h2 id=set-port-config>set port config</h2><pre tabindex=0><code>sudo mstconfig -d 48:00.0 set LINK_TYPE_P1=ib LINK_TYPE_P2=eth
+</code></pre><h2 id=after-reboot>after reboot</h2><pre tabindex=0><code>sudo mstconfig -d 03:00.0 query
+</code></pre><pre tabindex=0><code>Device #1:
+----------
+
+Device type:    ConnectX3Pro
+Device:         03:00.0
+
+Configurations:                         Next Boot
+    SRIOV_EN                            True(1)
+    NUM_OF_VFS                          8
+    LINK_TYPE_P1                        IB(1)
+    LINK_TYPE_P2                        ETH(2)
+    LOG_BAR_SIZE                        3
+    BOOT_PKEY_P1                        0
+    BOOT_PKEY_P2                        0
+    BOOT_OPTION_ROM_EN_P1               True(1)
+    BOOT_VLAN_EN_P1                     False(0)
+    BOOT_RETRY_CNT_P1                   0
+    LEGACY_BOOT_PROTOCOL_P1             PXE(1)
+    BOOT_VLAN_P1                        1
+    BOOT_OPTION_ROM_EN_P2               True(1)
+    BOOT_VLAN_EN_P2                     False(0)
+    BOOT_RETRY_CNT_P2                   0
+    LEGACY_BOOT_PROTOCOL_P2             PXE(1)
+    BOOT_VLAN_P2                        1
+    IP_VER_P1                           IPv4(0)
+    IP_VER_P2                           IPv4(0)
+    CQ_TIMESTAMP                        True(1)
+</code></pre><ul class=pa0><li class="list di"><a href=/tags/rdma/ class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">rdma</a></li></ul><div class="mt6 instapaper_ignoref"></div></div><aside class="w-30-l mt6-l"></aside></article></main><footer class="bg-black bottom-0 w-100 pa3" role=contentinfo><div class="flex justify-between"><a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href=https://blog.ellieiris.com/>&copy; wjzhou's Personal Blog 2023</a><div><div class=ananke-socials></div></div></div></footer></body></html>
