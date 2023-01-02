@@ -15,18 +15,17 @@ unzip fw-ConnectX3Pro-rel-2_42_5000-MCX354A-FCC_Ax-FlexBoot-3.4.752.bin.zip
 
 # install flashing tool
 opensuse:
-```sudo zypper install mstflint```
+```
+sudo zypper install mstflint
+```
 
 # get the pcie id
 ```
 sudo lspci | grep Mellanox
 ```
-=03:00.0= Network controller: Mellanox Technologies MT27520 Family [ConnectX-3 Pro]
+**03:00.0** Network controller: Mellanox Technologies MT27520 Family [ConnectX-3 Pro]
 
-This 03:00.0 should be passed into the mstflint's -d parameter.
-
-# get the device path
-```
+This `03:00.0` should be passed into the mstflint's -d parameter.
 
 # flash the firmware
 ```
@@ -89,4 +88,40 @@ Configurations:                         Next Boot
 ```
 
 ## set port config
-```sudo mstconfig -d 48:00.0 set LINK_TYPE_P1=eth LINK_TYPE_P2=ib```
+```
+sudo mstconfig -d 48:00.0 set LINK_TYPE_P1=ib LINK_TYPE_P2=eth
+```
+
+## after reboot
+```
+sudo mstconfig -d 03:00.0 query
+```
+```
+Device #1:
+----------
+
+Device type:    ConnectX3Pro
+Device:         03:00.0
+
+Configurations:                         Next Boot
+    SRIOV_EN                            True(1)
+    NUM_OF_VFS                          8
+    LINK_TYPE_P1                        IB(1)
+    LINK_TYPE_P2                        ETH(2)
+    LOG_BAR_SIZE                        3
+    BOOT_PKEY_P1                        0
+    BOOT_PKEY_P2                        0
+    BOOT_OPTION_ROM_EN_P1               True(1)
+    BOOT_VLAN_EN_P1                     False(0)
+    BOOT_RETRY_CNT_P1                   0
+    LEGACY_BOOT_PROTOCOL_P1             PXE(1)
+    BOOT_VLAN_P1                        1
+    BOOT_OPTION_ROM_EN_P2               True(1)
+    BOOT_VLAN_EN_P2                     False(0)
+    BOOT_RETRY_CNT_P2                   0
+    LEGACY_BOOT_PROTOCOL_P2             PXE(1)
+    BOOT_VLAN_P2                        1
+    IP_VER_P1                           IPv4(0)
+    IP_VER_P2                           IPv4(0)
+    CQ_TIMESTAMP                        True(1)
+```
