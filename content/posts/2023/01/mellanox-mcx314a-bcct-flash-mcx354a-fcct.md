@@ -1,7 +1,11 @@
 ---
 title: "Mellanox Mcx314a Bcct Flash Mcx354a Fcct"
 date: 2023-01-02T10:50:14-05:00
-draft: true
+draft: false
+categories: 
+- linux
+tags:
+- rdma
 ---
 
 The following command can be used to cross flash the Mellanox MCX314A-BCCT (Ethernet only) to Mellanox MCX354A-FCCT (VPI).
