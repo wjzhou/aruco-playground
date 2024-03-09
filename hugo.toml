@@ -1,4 +1,4 @@
 baseURL = 'https://blog.ellieiris.com/'
 languageCode = 'en-us'
-title = "wjzhou's Personal Blog"
-theme = "ananke"
+title = 'wjzhou Personal Blog'
+theme = 'ananke'
